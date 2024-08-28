@@ -1,42 +1,36 @@
-// import * as AWS from 'aws-sdk';
-// import { DocumentClient } from 'aws-sdk/clients/dynamodb';
+
+
+
+// import { DynamoDBClient } from '@aws-sdk/client-dynamodb'; // Import the DynamoDBClient
+// import {  DynamoDBDocumentClient} from '@aws-sdk/lib-dynamodb'; // Import DynamoDBDocumentClient
 // import 'dotenv/config';
 
 // const { ENDPOINT_URL, REGION } = process.env;
 
-// export const dynamoDBClient = (): DocumentClient => {
-//   return new AWS.DynamoDB.DocumentClient({
-//     region: REGION,
-//     endpoint: ENDPOINT_URL,
-//   });
-// };
-
-// import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-// import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
-// import 'dotenv/config';
-
-// const { ENDPOINT_URL, REGION } = process.env;
-
-// // Create a DynamoDB client
-// const client = new DynamoDBClient({
+// // Create DynamoDB client
+// const ddbClient = new DynamoDBClient({
 //   region: REGION,
 //   endpoint: ENDPOINT_URL,
 // });
 
-// // Create a DocumentClient using DynamoDBDocumentClient
-// export const dynamoDBClient = DynamoDBDocumentClient.from(client);
+// // Create DynamoDB DocumentClient
+// export const dynamoDBClient = (): DynamoDBDocumentClient => {
+//   return DynamoDBDocumentClient.from(ddbClient);
+  
+// };
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
+
+// Create DynamoDB client
+const ddbClient = new DynamoDBClient({
+  region: process.env.REGION,
+  endpoint: process.env.ENDPOINT_URL,
+});
+
+// Create DynamoDB DocumentClient instance
+const ddbDocClient = DynamoDBDocumentClient.from(ddbClient);
+
+export { ddbDocClient };
 
 
 
-import * as AWS from 'aws-sdk';
-import { DocumentClient } from 'aws-sdk/clients/dynamodb';
-import 'dotenv/config';
-
-const { ENDPOINT_URL, REGION } = process.env;
-
-export const dynamoDBClient = (): DocumentClient => {
-  return new AWS.DynamoDB.DocumentClient({
-    region: REGION,
-    endpoint: ENDPOINT_URL,
-  });
-};
